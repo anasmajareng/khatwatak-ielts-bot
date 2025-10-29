@@ -6,14 +6,16 @@ from telegram.ext import (
     filters,
 )
 import os
+import os
+
+
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, InputFile
 
-TG_BOT_TOKEN = os.environ.get("8200974660:AAFAerLQ5x5CZ5A4CA2tPCjUMQIejxifc7g")
-if not TG_BOT_TOKEN:
-    raise RuntimeError("TG_BOT_TOKEN environment variable is not set")
+TG_BOT_TOKEN = "8200974660:AAFAerLQ5x5CZ5A4CA2tPCjUMQIejxifc7g"
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-video_path = os.path.join(BASE_DIR, "edited_video_intro3.mp4")
+video_path = "edited_video_intro3.mp4"
 import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -84,13 +86,14 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             with open(video_path, "rb") as video_file:
                 await context.bot.send_video(
                     chat_id=chat_id,
-                    video=video_file,
+                    video= video_file,
                     caption="🎬 الفيديو التعريفي لخطوتك للايلتس",
                     supports_streaming=True
                 )
+            logger.info("Introductory video sent successfully to chat_id = %s", chat_id)
         except Exception as e:
             logger.error("Failed to send video: %s", str(e))
-            await context.bot.send_message(chat_id=chat_id, text="حدث خطأ أثناء إرسال الفيديو.")
+
         return
         
 
