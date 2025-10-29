@@ -8,8 +8,8 @@ from telegram.ext import (
 import os
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove, InputFile
 
-TOKEN = os.environ.get("8200974660:AAFAerLQ5x5CZ5A4CA2tPCjUMQIejxifc7g")
-if not TOKEN:
+TG_BOT_TOKEN = os.environ.get("8200974660:AAFAerLQ5x5CZ5A4CA2tPCjUMQIejxifc7g")
+if not TG_BOT_TOKEN:
     raise RuntimeError("TG_BOT_TOKEN environment variable is not set")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -104,7 +104,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("اختر أحد الخيارات من الأزرار بالأسفل 👇")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = ApplicationBuilder().token(TG_BOT_TOKEN).build()
     print("Video absolute path:", video_path)
 
     # Command handlers
